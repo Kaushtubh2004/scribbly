@@ -8,14 +8,15 @@ import Dashboard from './components/Dashboard'
 import ForgotPassword from './components/ForgotPassword'
 import Footer from './components/Footer'
 import ScribblyGuide from './components/ScribblyGuide'
-import Notepad from './components/Notepad'
+import Faq from './components/Faq'
+import Todo from './components/Todo'
 
 function App() {
   
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <><Navbar /><Landing /><ScribblyGuide/><Footer/></>
+      element: <><Navbar /><Landing /><ScribblyGuide/><Faq/><Footer/></>
     },
     {
       path: "/login",
@@ -36,7 +37,7 @@ function App() {
     
     {
       path: "/n",
-      element: <><Notepad/></>
+      element: <><Todo/></>
     },
   ])
   return (

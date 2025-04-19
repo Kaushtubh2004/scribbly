@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Landing = () => {
   return (
@@ -17,9 +18,9 @@ const Landing = () => {
             “The faintest ink is more powerful than the strongest memory.”
           </blockquote>
           <div>
-            <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
+            <NavLink to="/login"><button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
               Get Started
-            </button>
+            </button></NavLink>
           </div>
         </div>
 

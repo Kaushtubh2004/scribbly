@@ -2,8 +2,27 @@ import React, { useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { FaSignOutAlt, FaUserTie } from "react-icons/fa";
 import { LuNotebook } from "react-icons/lu";
+import { MdOutlinePassword } from "react-icons/md";
+import ProfilePopup from "./ProfilePopup";
+import PasswordPopup from "./PasswordPopup";
 
 const DashSidebar = () => {
+
+  const [showPasswordPopup, setShowPasswordPopup] = useState(false);
+
+  const handlePasswordChange = ({ currentPassword, newPassword }) => {
+    console.log("Change request:", currentPassword, newPassword);
+    // Call your backend API here
+  };
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  const user = {
+    name: "Kaushtubh Singh",
+    email: "kausthubh@example.com",
+    image: "https://i.pravatar.cc/150?img=3", // Sample profile picture
+  };
+
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleSidebar = () => {
@@ -31,11 +50,17 @@ const DashSidebar = () => {
 
           <div className="flex items-center space-x-4 hover:text-gray-400 cursor-pointer">
             <div className=" text-white p-2 rounded">
-              <FaUserTie className="text-xl" />
+              <FaUserTie  onClick={() => setShowPopup(true)} className="text-xl" />
             </div>
             {isExpanded && <span className="text-lg">User Profile</span>}
           </div>
 
+          <div className="flex items-center space-x-4 hover:text-gray-400 cursor-pointer">
+            <div className=" text-white p-2 rounded">
+            <MdOutlinePassword onClick={() => setShowPasswordPopup(true)} className="text-xl" />
+            </div>
+            {isExpanded && <span className="text-lg">Change Password</span>}
+          </div>
           <div className="flex items-center space-x-4 hover:text-gray-400 cursor-pointer">
             <div className=" text-white p-2 rounded">
               <FaSignOutAlt className="text-xl" />
@@ -44,7 +69,15 @@ const DashSidebar = () => {
           </div>
         </div>
       </div>
-
+      {showPopup && (
+        <ProfilePopup user={user} onClose={() => setShowPopup(false)} />
+      )}
+      {showPasswordPopup && (
+        <PasswordPopup
+          onClose={() => setShowPasswordPopup(false)}
+          onChangePassword={handlePasswordChange}
+        />
+      )}
     </>
 
   );
